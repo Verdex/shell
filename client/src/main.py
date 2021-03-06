@@ -1,16 +1,17 @@
 
 import pygame
 import resources.images
+from game.admin_state import AdminState
 
 EventLoopWait = 16
 
 pygame.init()
 
-window_style = 0
-best_depth = pygame.display.mode_ok((800, 800), window_style, 32)
-screen = pygame.display.set_mode((800, 800), window_style, best_depth) 
+best_depth = pygame.display.mode_ok((800, 800), 0, 32)
+screen = pygame.display.set_mode((800, 500), pygame.RESIZABLE, best_depth) 
 
 images = resources.images.Images()
+admin = AdminState(800, 800) 
 
 
 game_running = True
@@ -29,7 +30,8 @@ while game_running:
         elif event.type == pygame.MOUSEBUTTONUP: 
             pass
         elif event.type == pygame.VIDEORESIZE:
-            pass
+            admin.window_width = event.w
+            admin.window_height = event.h
         elif event.type == pygame.QUIT:
             game_running = False
 
