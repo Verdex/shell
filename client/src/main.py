@@ -22,11 +22,12 @@ at2 = create_surface(images.at_symbol)
 entity_manager.add(0, Entity(at, (50, 50)))
 entity_manager.add(1, Entity(at2, (100, 200)))
 
-game_running = True
+loop_start = 0
 
-while game_running:
-
-    loop_start = pygame.time.get_ticks()
+while admin.active:
+    ticks = pygame.time.get_ticks()
+    admin.event_loop_delta = ticks - loop_start
+    loop_start = ticks
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -41,7 +42,7 @@ while game_running:
             admin.window_width = event.w
             admin.window_height = event.h
         elif event.type == pygame.QUIT:
-            game_running = False
+            admin.active = False
 
     screen.fill([255, 255, 255])
 
@@ -56,3 +57,4 @@ while game_running:
 
     if loop_duration < EventLoopWait:
         pygame.time.delay(EventLoopWait - loop_duration)
+    
