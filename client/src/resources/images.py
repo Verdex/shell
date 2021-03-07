@@ -1,5 +1,6 @@
 
 from resources.util import load_image
+import resources.sizes as sizes
 
 class Image:
     def __init__(self, name, size, image):
@@ -10,4 +11,4 @@ class Image:
 class Images:
 
     def __init__(self):
-        self.at_symbol = Image("at_symbol", (32, 32), load_image("at_symbol.png"))
+        self.at_symbol = Image("at_symbol", sizes.Normal, load_image("at_symbol.png"))
