@@ -8,6 +8,7 @@ class Console:
     HistoryLineOffset = -95
     WidthMargin = 10
     Black = [0, 0, 0]
+    White = [255, 255, 255]
 
     def __init__(self, admin):
         self._font = pygame.font.SysFont(None, 18)
@@ -29,6 +30,7 @@ class Console:
         screen.blit(surface, (self.WidthMargin, height))
 
     def render_to_screen(self, screen):
+        screen.fill(self.White)
         self._render_at(screen, ''.join(self._entry), self._admin.console_window_height + self.EntryHeightMargin)
         pygame.draw.line( screen \
                         , self.Black \

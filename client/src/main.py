@@ -46,7 +46,14 @@ while admin.active:
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            pass
+            if admin.mode == AdminState.Console:
+                if event.key == pygame.K_RETURN:
+                    console.entry_to_history()
+                else:
+                    console.entry_char(event.unicode) 
+            elif admin.mode == AdminState.Game:
+                if event.key == pygame.K_i:
+                    admin.mode = AdminState.Console
         elif event.type == pygame.KEYUP:
             pass
         elif event.type == pygame.MOUSEBUTTONDOWN: 
