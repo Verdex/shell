@@ -5,16 +5,20 @@ from game.admin_state import AdminState
 from game.util import create_surface
 from game.entity_manager import EntityManager
 from game.entity_manager import Entity
+from game.console import Console
 
 EventLoopWait = 16
+DefaultHeight = 500
+DefaultWidth = 800
 
 pygame.init()
 
-best_depth = pygame.display.mode_ok((800, 800), 0, 32)
-screen = pygame.display.set_mode((800, 500), pygame.RESIZABLE, best_depth) 
+best_depth = pygame.display.mode_ok((DefaultWidth, DefaultHeight), 0, 32)
+screen = pygame.display.set_mode((DefaultWidth, DefaultHeight), pygame.RESIZABLE, best_depth) 
 
 images = resources.images.Images()
-admin = AdminState(800, 800) 
+admin = AdminState(DefaultWidth, DefaultHeight) 
+console = Console(admin)
 entity_manager = EntityManager()
 
 at = create_surface(images.at_symbol)
@@ -48,6 +52,15 @@ while admin.active:
 
     for (id, entity) in entity_manager.all_entities():
         screen.blit(entity.surface, entity.loc)
+
+
+    console.render_to_screen(screen)
+
+    #font = pygame.font.SysFont(None, 18)
+    #blarg = font.render('blah', True, [0,0,0])
+    #screen.blit(blarg, (10, admin.window_height - 15))
+
+
 
     pygame.display.update()
 
