@@ -16,10 +16,10 @@ class Console:
         self._entry = ['l', 'i', 'n', 'e']
         
     def entry_char(self, char):
-        pass
+        self._entry.append(char)
 
     def entry_del_char(self):
-        pass
+        self._entry.pop()
 
     def console_top(self):
         return self._admin.window_height + self.HistoryLineOffset
