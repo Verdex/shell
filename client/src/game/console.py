@@ -12,8 +12,8 @@ class Console:
     def __init__(self, admin):
         self._font = pygame.font.SysFont(None, 18)
         self._admin = admin
-        self._history = ["blah", "ikky", "nope", "blarg", "lean"]
-        self._entry = ['l', 'i', 'n', 'e']
+        self._history = []
+        self._entry = []
         
     def entry_char(self, char):
         self._entry.append(char)
