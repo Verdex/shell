@@ -56,11 +56,6 @@ while admin.active:
 
     console.render_to_screen(screen)
 
-    #font = pygame.font.SysFont(None, 18)
-    #blarg = font.render('blah', True, [0,0,0])
-    #screen.blit(blarg, (10, admin.window_height - 15))
-
-
 
     pygame.display.update()
 

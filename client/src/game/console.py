@@ -30,7 +30,7 @@ class Console:
 
     def render_to_screen(self, screen):
         self._render_at(screen, self._entry, self._admin.window_height + self.EntryHeightMargin)
-        pygame.draw.line(screen \
+        pygame.draw.line( screen \
                         , self.Black \
                         , (0, self._admin.window_height + self.EntryLineOffset) \
                         , (self._admin.window_width, self._admin.window_height + self.EntryLineOffset))
@@ -38,7 +38,7 @@ class Console:
         for h in self._history:
             self._render_at(screen, h, self._admin.window_height + (self.EntryHeightMargin * i))
             i += 1
-        pygame.draw.line(screen \
+        pygame.draw.line( screen \
                         , self.Black \
                         , (0, self._admin.window_height + self.HistoryLineOffset) \
                         , (self._admin.window_width, self._admin.window_height + self.HistoryLineOffset))
@@ -46,8 +46,3 @@ class Console:
 
     def entry_to_history(self):
         pass
-
-    #font = pygame.font.SysFont(None, 18)
-    
-    #blarg = font.render('blah', True, [0,0,0])
-    #screen.blit(blarg, (500, 100))
