@@ -13,23 +13,23 @@ class Console:
         self._font = pygame.font.SysFont(None, 18)
         self._admin = admin
         self._history = ["blah", "ikky", "nope", "blarg", "lean"]
-        self._entry = "line" 
+        self._entry = ['l', 'i', 'n', 'e']
         
-    def add_line(self, line):
-        pass
-
     def entry_char(self, char):
         pass
 
     def entry_del_char(self):
         pass
 
+    def console_top(self):
+        return self._admin.window_height + self.HistoryLineOffset
+
     def _render_at(self, screen, str, height):
         surface = self._font.render(str, True, self.Black)
         screen.blit(surface, (self.WidthMargin, height))
 
     def render_to_screen(self, screen):
-        self._render_at(screen, self._entry, self._admin.window_height + self.EntryHeightMargin)
+        self._render_at(screen, ''.join(self._entry), self._admin.window_height + self.EntryHeightMargin)
         pygame.draw.line( screen \
                         , self.Black \
                         , (0, self._admin.window_height + self.EntryLineOffset) \
@@ -45,4 +45,7 @@ class Console:
 
 
     def entry_to_history(self):
-        pass
+        if len(self._history) >= 5:
+            self._history.pop()
+        self._history.insert(0, ''.join(self._entry))
+        self._entry = []
