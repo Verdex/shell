@@ -10,6 +10,7 @@ from game.console import Console
 EventLoopWait = 16
 DefaultHeight = 500
 DefaultWidth = 800
+White = [255, 255, 255]
 
 pygame.init()
 
@@ -20,6 +21,16 @@ images = resources.images.Images()
 admin = AdminState(DefaultWidth, DefaultHeight) 
 console = Console(admin)
 entity_manager = EntityManager()
+
+admin.game_window_width = admin.window_width
+admin.game_window_height = admin.window_height - console.height()
+admin.console_window_width = admin.window_width
+admin.console_window_height = console.height()
+
+game_screen = pygame.Surface((admin.game_window_width, admin.game_window_height))
+game_screen.fill(White)
+console_screen = pygame.Surface((admin.window_width, console.height()))
+console_screen.fill(White)
 
 at = create_surface(images.at_symbol)
 at2 = create_surface(images.at_symbol)
@@ -45,17 +56,24 @@ while admin.active:
         elif event.type == pygame.VIDEORESIZE:
             admin.window_width = event.w
             admin.window_height = event.h
+
+            admin.game_window_width = event.w 
+            admin.game_window_height = admin.window_height - console.height()
+
+            admin.console_window_width = event.w
+            admin.console_window_height = console.height()
         elif event.type == pygame.QUIT:
             admin.active = False
 
-    screen.fill([255, 255, 255])
+    screen.fill(White)
 
     for (id, entity) in entity_manager.all_entities():
-        screen.blit(entity.surface, entity.loc)
+        game_screen.blit(entity.surface, entity.loc)
 
+    console.render_to_screen(console_screen)
 
-    console.render_to_screen(screen)
-
+    screen.blit(game_screen, (0, 0))
+    screen.blit(console_screen, (0, admin.game_window_height)) 
 
     pygame.display.update()
 

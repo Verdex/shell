@@ -21,27 +21,27 @@ class Console:
     def entry_del_char(self):
         self._entry.pop()
 
-    def console_top(self):
-        return self._admin.window_height + self.HistoryLineOffset
+    def height(self):
+        return self.HistoryLineOffset * -1
 
     def _render_at(self, screen, str, height):
         surface = self._font.render(str, True, self.Black)
         screen.blit(surface, (self.WidthMargin, height))
 
     def render_to_screen(self, screen):
-        self._render_at(screen, ''.join(self._entry), self._admin.window_height + self.EntryHeightMargin)
+        self._render_at(screen, ''.join(self._entry), self._admin.console_window_height + self.EntryHeightMargin)
         pygame.draw.line( screen \
                         , self.Black \
-                        , (0, self._admin.window_height + self.EntryLineOffset) \
-                        , (self._admin.window_width, self._admin.window_height + self.EntryLineOffset))
+                        , (0, self._admin.console_window_height + self.EntryLineOffset) \
+                        , (self._admin.console_window_width, self._admin.console_window_height + self.EntryLineOffset))
         i = 2
         for h in self._history:
-            self._render_at(screen, h, self._admin.window_height + (self.EntryHeightMargin * i))
+            self._render_at(screen, h, self._admin.console_window_height + (self.EntryHeightMargin * i))
             i += 1
         pygame.draw.line( screen \
                         , self.Black \
-                        , (0, self._admin.window_height + self.HistoryLineOffset) \
-                        , (self._admin.window_width, self._admin.window_height + self.HistoryLineOffset))
+                        , (0, self._admin.console_window_height + self.HistoryLineOffset) \
+                        , (self._admin.console_window_width, self._admin.console_window_height + self.HistoryLineOffset))
 
 
     def entry_to_history(self):
