@@ -5,7 +5,7 @@ class Console:
 
     EntryHeightMargin = -15
     EntryLineOffset = -18
-    HistoryLineOffset = -95
+    HistoryLineOffset = -170
     WidthMargin = 10
     Black = [0, 0, 0]
     White = [255, 255, 255]
@@ -20,7 +20,8 @@ class Console:
         self._entry.append(char)
 
     def entry_del_char(self):
-        self._entry.pop()
+        if len(self._entry) > 0:
+            self._entry.pop()
 
     def height(self):
         return self.HistoryLineOffset * -1
@@ -47,7 +48,7 @@ class Console:
 
 
     def entry_to_history(self):
-        if len(self._history) >= 5:
+        if len(self._history) >= 10:
             self._history.pop()
         self._history.insert(0, ''.join(self._entry))
         self._entry = []

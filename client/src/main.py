@@ -49,6 +49,10 @@ while admin.active:
             if admin.mode == AdminState.Console:
                 if event.key == pygame.K_RETURN:
                     console.entry_to_history()
+                elif event.key == pygame.K_BACKSPACE:
+                    console.entry_del_char()
+                elif event.key == pygame.K_ESCAPE:
+                    admin.mode = AdminState.Game
                 else:
                     console.entry_char(event.unicode) 
             elif admin.mode == AdminState.Game:
@@ -69,6 +73,11 @@ while admin.active:
 
             admin.console_window_width = event.w
             admin.console_window_height = console.height()
+
+            game_screen = pygame.Surface((admin.game_window_width, admin.game_window_height))
+            game_screen.fill(White)
+            console_screen = pygame.Surface((admin.window_width, console.height()))
+            console_screen.fill(White)
         elif event.type == pygame.QUIT:
             admin.active = False
 
