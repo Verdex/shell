@@ -56,7 +56,11 @@ while admin.active:
                 else:
                     console.entry_char(event.unicode) 
             elif admin.mode == AdminState.Game:
-                if event.key == pygame.K_i:
+                if event.key == pygame.K_UP or event.key == pygame.K_k:
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_j:
+                elif event.key == pygame.K_RIGHT or event.key == pygame.K_l:
+                elif event.key == pygame.K_LEFT or event.key == pygame.K_h:
+                elif event.key == pygame.K_i:
                     admin.mode = AdminState.Console
         elif event.type == pygame.KEYUP:
             pass
