@@ -1,0 +1,8 @@
+
+version | type | ...
+
+connect request
+0 | 0 
+
+connect response
+0 | 0 | id = 4 bytes
