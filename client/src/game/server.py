@@ -4,10 +4,6 @@ import socket
 ServerAddress = "0.0.0.0"
 ServerPort = 80
 
-ConnectRequest = 0
-
-
-
     
 class Server:
 
