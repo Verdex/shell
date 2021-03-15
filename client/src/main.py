@@ -6,6 +6,8 @@ from game.util import create_surface
 from game.entity_manager import EntityManager
 from game.entity_manager import Entity
 from game.console import Console
+from game.console_executor import ConsoleExecutor
+from game.key_mode import KeyMode
 
 EventLoopWait = 16
 DefaultHeight = 500
@@ -20,7 +22,9 @@ screen = pygame.display.set_mode((DefaultWidth, DefaultHeight), pygame.RESIZABLE
 images = resources.images.Images()
 admin = AdminState(DefaultWidth, DefaultHeight) 
 console = Console(admin)
+executor = ConsoleExecutor()
 entity_manager = EntityManager()
+key_mode = KeyMode(console, executor)
 
 admin.game_window_width = admin.window_width
 admin.game_window_height = admin.window_height - console.height()
@@ -46,24 +50,9 @@ while admin.active:
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            if admin.mode == AdminState.Console:
-                if event.key == pygame.K_RETURN:
-                    console.entry_to_history()
-                elif event.key == pygame.K_BACKSPACE:
-                    console.entry_del_char()
-                elif event.key == pygame.K_ESCAPE:
-                    admin.mode = AdminState.Game
-                else:
-                    console.entry_char(event.unicode) 
-            elif admin.mode == AdminState.Game:
-                if event.key == pygame.K_UP or event.key == pygame.K_k:
-                elif event.key == pygame.K_DOWN or event.key == pygame.K_j:
-                elif event.key == pygame.K_RIGHT or event.key == pygame.K_l:
-                elif event.key == pygame.K_LEFT or event.key == pygame.K_h:
-                elif event.key == pygame.K_i:
-                    admin.mode = AdminState.Console
+            key_mode.key_up(event)
         elif event.type == pygame.KEYUP:
-            pass
+            key_mode.key_down(event)
         elif event.type == pygame.MOUSEBUTTONDOWN: 
             pass
         elif event.type == pygame.MOUSEBUTTONUP: 

@@ -52,3 +52,6 @@ class Console:
             self._history.pop()
         self._history.insert(0, ''.join(self._entry))
         self._entry = []
+
+    def get_entry(self):
+        return ''.join(self._entry)
