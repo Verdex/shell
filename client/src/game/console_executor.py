@@ -14,6 +14,8 @@ class ConsoleExecutor:
         if len(words) == 0:
             pass
         elif words[0] == "connect":
+            # todo ip parse and port (any number?)
+            #self._server.connect(words[1], words[2])
             pass
         elif words[0] == "exit":
             self._exit = True
