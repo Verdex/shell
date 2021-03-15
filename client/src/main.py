@@ -8,6 +8,7 @@ from game.entity_manager import Entity
 from game.console import Console
 from game.console_executor import ConsoleExecutor
 from game.key_mode import KeyMode
+from game.server import Server
 
 EventLoopWait = 16
 DefaultHeight = 500
@@ -19,10 +20,11 @@ pygame.init()
 best_depth = pygame.display.mode_ok((DefaultWidth, DefaultHeight), 0, 32)
 screen = pygame.display.set_mode((DefaultWidth, DefaultHeight), pygame.RESIZABLE, best_depth) 
 
+server = Server()
 images = resources.images.Images()
 admin = AdminState(DefaultWidth, DefaultHeight) 
 console = Console(admin)
-executor = ConsoleExecutor()
+executor = ConsoleExecutor(server, console)
 entity_manager = EntityManager()
 key_mode = KeyMode(console, executor)
 

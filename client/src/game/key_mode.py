@@ -9,8 +9,9 @@ class ConsoleMode:
 
     def key_down(self, event):
         if event.key == pygame.K_RETURN:
-            #entry = self._console.get_entry().strip()
+            entry = self._console.get_entry()
             self._console.entry_to_history()
+            self._executor.execute(entry)
         elif event.key == pygame.K_BACKSPACE:
             self._console.entry_del_char()
         elif event.key == pygame.K_ESCAPE:

@@ -55,3 +55,8 @@ class Console:
 
     def get_entry(self):
         return ''.join(self._entry)
+
+    def to_history(self, line):
+        if len(self._history) >= 10:
+            self._history.pop()
+        self._history.insert(0, line)

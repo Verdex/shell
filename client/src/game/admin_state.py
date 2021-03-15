@@ -1,7 +1,5 @@
 
 class AdminState:
-    Game = "game"
-    Console = "console"
 
     def __init__(self, window_width, window_height):
         self.active = True
@@ -12,5 +10,4 @@ class AdminState:
         self.game_window_height = 0
         self.console_window_width = 0
         self.console_window_height = 0
-        self.mode = self.Game 
     
