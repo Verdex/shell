@@ -7,5 +7,5 @@ connect request
 connect response
 0 | 0 | id = 4 bytes
 
-request list
+list
 0 | 1 | length = 4 bytes | ...
