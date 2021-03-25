@@ -10,9 +10,6 @@ VersionZero = 0
 ConnectRequestType = 0
 ListType = 1
 
-def byte(b):
-    return b.to_bytes(1, sys.byteorder)
-
 def parse(bs):
     version = bs[0]
     if version == VersionZero:

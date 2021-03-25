@@ -1,7 +1,7 @@
 
 version | type | ...
 
-packet
+packet v0
 0 | length = 4 bytes | ...
 
 connect request
